@@ -30,7 +30,12 @@ TRADUCTION = {
 def decode(message):
     if message == "":
         return ""
-    else:
-        morse_lettres = message.split(" ")
-        alpha_lettres = [TRADUCTION[s] for s in morse_lettres]
-        return ''.join(alpha_lettres)
+
+    words = message.split(" / ")
+    decoded_words = [decode_word(word) for word in words]
+    return ' '.join(decoded_words)
+
+def decode_word(word):
+    symbols = word.split(" ")
+    letters = [TRADUCTION[s] for s in symbols]
+    return ''.join(letters)
